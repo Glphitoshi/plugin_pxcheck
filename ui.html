@@ -1,0 +1,616 @@
+<style>
+  :root {
+    --bg: brown;
+    --blue: rgb(74, 163, 227);
+    --blue_second: rgb(166, 208, 238);
+    --blue_ac: rgb(19, 127, 234);
+    --white: rgb(255, 255, 255);
+    --black: rgb(50, 50, 50);
+    --gray: rgb(175, 175, 175);
+    --gray_second: rgb(200 200 200);
+    --gray_ac: #eff1f2;
+  }
+
+  body {
+    display: block;
+    margin: 2px 5px 2px 3px;
+  }
+
+  p.h {
+    font-size: 10px;
+    color: var(--black);
+    width: 100%;
+    border: 1px solid var(--gray);
+    border-radius: 4px;
+    background: none;
+    margin: 3px 1px;
+    text-align: center;
+    outline: none;
+    padding: 1px;
+    box-sizing: border-box;
+
+  }
+
+  p.done {
+    font-size: 10px;
+    color: var(--blue_ac);
+    width: 100%;
+    border: 1px solid var(--blue_ac);
+    border-radius: 4px;
+    background: #eff7fb;
+    margin: 3px 2px;
+    text-align: center;
+    outline: none;
+    padding: 1px;
+    box-sizing: border-box;
+
+  }
+
+  p.gray {
+    font-size: 9px;
+    color: var(--gray);
+
+  }
+
+  p {
+    font-size: 9px;
+    color: var(--black);
+    margin: 2px 2px 2px 3px;
+  }
+
+  /*---------------------------ボタン------------------------ */
+  button {
+    font-size: 11px;
+    color: var(--white);
+    font-weight: normal;
+    background: var(--blue);
+    margin: 2px 1px 2px 1px;
+    padding: 4px 2px;
+    border-style: none;
+    border-radius: 15px;
+    transition: .2s;
+    min-width: 48px;
+  }
+
+  button.reverse {
+    font-size: 10px;
+    color: var(--white);
+    font-weight: normal;
+    background: var(--blue_second);
+    margin: 2px 1px 2px 1px;
+    padding: 4px 2px;
+    border-style: none;
+    border-radius: 15px;
+    transition: .2s;
+    min-width: 48px;
+  }
+
+  button.create {
+    background: var(--blue);
+    transition: .2s;
+
+  }
+
+  button.close {
+    color: var(--gray);
+    background: none;
+    outline: 1px solid var(--gray);
+  }
+
+  button.name {
+    color: var(--gray);
+    background: none;
+    outline: 1px solid var(--gray);
+    font-size: 11px;
+    font-weight: normal;
+    margin: 0px 2px 0px 2px;
+    padding: 1px 2px;
+    border-style: none;
+    border-radius: 15px;
+    transition: .2s;
+    min-width: 34px;
+  }
+
+  button:hover {
+    background: var(--blue_ac);
+  }
+
+  button.close:hover {
+    background: var(--gray_ac);
+  }
+
+  button.name:hover {
+    color: var(--white);
+    background: var(--blue_ac);
+    outline: 1px solid var(--white);
+  }
+
+  input[type="number"] {
+    width: 24px;
+    border: 0px solid var(--gray);
+    border-radius: 4px;
+    background: var(--gray_ac);
+    margin: 1px 6px 1px 1px;
+    outline: none;
+    padding: 0px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: 0.2s;
+    font-size: 12px;
+  }
+
+  input[type="number"]:focus {
+    color: var(--black);
+    background: var(--white);
+    border-color: var(--blue);
+    box-shadow: 0 0 8px 0 var(--blue);
+    font-size: 12px;
+  }
+
+  input.neutral {
+    color: var(--gray);
+  }
+
+  input.gray {
+    color: var(--gray_second);
+    transition: 0.15s;
+  }
+
+  /*-----------------チェックボックスのボタン------------------------ */
+  form {
+    display: block;
+    margin-top: 0em;
+    margin-block-end: 0em;
+  }
+
+  .custum-checkbox {
+    position: relative;
+    margin: 1px 0px;
+    padding-left: 2px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .custum-checkbox input {
+    display: none;
+  }
+
+  .custum-mark {
+    position: absolute;
+    top: -2px;
+    left: -14px;
+    height: 14px;
+    width: 24px;
+    border: solid 2px var(--gray_ac);
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: 0.2s;
+  }
+
+  .custum-mark:after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: -3px;
+    width: 6px;
+    height: 10px;
+    border: solid #FFF;
+    border-width: 0 1px 1px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+  }
+
+  .custum-checkbox input:checked+.custum-mark {
+    background: var(--gray_second);
+    border-color: var(--gray_second);
+  }
+
+  .custum-checkbox input:checked+.custum-mark:after {
+    opacity: 1;
+  }
+
+  /*---------------------------flex------------------------ */
+  .flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    color: #fff;
+  }
+
+  .left {
+    text-align: left;
+    width: 70%;
+    height: 16px;
+    box-sizing: border-box;
+  }
+
+  .right {
+    text-align: center;
+    width: 30%;
+    height: 16px;
+    box-sizing: border-box;
+  }
+
+  .left2 {
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+    width: 65%;
+    height: 22px;
+    box-sizing: border-box;
+    line-height: 18px;
+  }
+
+  .right2 {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 35%;
+    height: 22px;
+    box-sizing: border-box;
+  }
+
+  .center {
+    text-align: center;
+    width: 50%;
+    height: 22px;
+    box-sizing: border-box;
+  }
+
+  .all {
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .named {
+    width: 25%;
+    height: 18px;
+    box-sizing: border-box;
+  }
+
+  hr {
+    margin: 2px;
+    border: 1px solid #eff1f2;
+  }
+
+  /*---------------------------アコーディオン------------------------ */
+  .toggle {
+    display: none;
+  }
+
+  .Label {
+    /*タイトル*/
+    font-size: 8px;
+    padding: 0px;
+    display: block;
+    color: var(--gray);
+  }
+
+  .Label::before {
+    /*タイトル横の矢印*/
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid var(--gray);
+    border-right: 1px solid var(--gray);
+    -webkit-transform: rotate(45deg);
+    position: absolute;
+    right: 24px;
+    transform: rotate(135deg);
+    margin: 2px 1px;
+  }
+
+  .Label,
+  .content {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: all 0.15s;
+  }
+
+  .content {
+    /*本文*/
+    height: 0;
+    width: 150px;
+    margin-bottom: 0px;
+    padding: 0px 0px;
+    overflow: hidden;
+  }
+
+  .toggle:checked+.Label+.content {
+    /*開閉時*/
+    height: auto;
+    padding: 0px;
+    transition: all .15s;
+  }
+
+  .toggle:checked+.Label::before {
+    transform: rotate(-45deg) !important;
+    margin: 6px 1px;
+  }
+
+  /*---------------------------textarea------------------------ */
+  textarea {
+    font-size: 10px;
+    line-height: 16px;
+    color: var(--gray);
+    width: 145px;
+    height: 300px;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+  }
+</style>
+
+<div class="all">
+  <p class="h" id="main_text">Select layers to apply</p>
+  <div class="flex">
+
+    <div class="left2">
+      <p>px_check
+      </p>
+    </div>
+    <div class="right2">
+      <button id="create" class="create">Create</button>
+    </div>
+
+    <div class="left">
+      <p class="gray">　タテ・横のpx誤差</p>
+    </div>
+    <div class="right"><input class="neutral" id="x_count" type="number" value="3"></div>
+    <div class="left"><label for="pxCheck">
+        <p class="gray">　pxズレのチェック</p>
+      </label></div>
+    <div class="right"><label class="custum-checkbox">
+        <form name="form1">
+          <input type="hidden" name="check_1" value="false">
+          <input type="checkbox" id="pxCheck" name="check_1" checked value="true">
+          <span class="custum-mark"></span>
+        </form>
+      </label></div>
+    <div class="left"><label for="pxRound">
+        <p class="gray">　px整数化
+        </p>
+      </label></div>
+    <div class="right"><label class="custum-checkbox">
+        <form name="form1">
+          <input type="hidden" name="check_1" value="false">
+          <input type="checkbox" id="pxRound" name="check_1" checked value="true">
+          <span class="custum-mark"></span>
+        </form>
+      </label></div>
+    <div class="left"><label for="invisibleDelete">
+        <p class="gray">　非表示を削除
+        </p>
+    </div>
+    <div class="right"><label class="custum-checkbox">
+        <form name="form1">
+          <input type="hidden" name="check_1" value="false">
+          <input type="checkbox" id="invisibleDelete" name="check_1" checked value="true">
+          <span class="custum-mark"></span>
+        </form>
+      </label>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <div class="all">
+    <div class="flex">
+
+      <div class="left2">
+        <p>⇅複数frame逆転
+        </p>
+      </div>
+      <div class="right2">
+        <button class="reverse" id="reverse">Reverse</button>
+      </div>
+
+      <div class="left2">
+        <p>小文字に変換
+        </p>
+      </div>
+      <div class="right2">
+        <button class="reverse" id="small_letter">Small</button>
+      </div>
+
+      <div class="left2">
+        <p>文字数カウント
+        </p>
+      </div>
+      <div class="right2">
+        <button class="reverse" id="count">Count</button>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+  <div class="all">
+    <div class="flex">
+      <section class="accordion">
+        <input id="block-01" type="checkbox" class="toggle">
+        <label class="Label" for="block-01">tool</label>
+        <div class="content">
+
+          <div class="left">
+            <p>命名</p>
+          </div>
+          <div class="flex">
+            <div class="named"><button class="name" id="rename" value="sec0">sec0</button></div>
+            <!-- <div class="named"><button class="name" id="name" value="cv">cv0</button></div>
+            <div class="named"><button class="name" id="rename" value="btn">btn</button></div>
+            <div class="named"><button class="name" id="name" value="floating">floating</button></div>
+
+            <div class="named"><button class="name" id="rename" value="header">header</button></div>
+            <div class="named"><button class="name" id="rename" value="footer">footer</button></div>
+            <div class="named"><button class="name" id="rename" value="icon">icon</button></div>
+            <div class="named"><button class="name" id="rename" value="logo">logo</button></div> -->
+
+
+          </div>
+        </div>
+    </div>
+  </div>
+  </section>
+
+  <div class="all">
+    <p class="gray">note</p>
+  </div>
+
+
+
+  <textarea id="textarea">
+　■pxズレのチェック
+1「SP_n稿」frameを1つ選択
+2「create」を押す
+3 ズレがあれば「px_check」のframeが作成される
+
+太い直線=frameのy軸ズレ
+太い枠の四角=frame同士のズレ
+細い枠の四角=frame/maskと要素とのズレ
+
+※1層目と2層目は必ず整数化されます
+
+　■px整数化
+座標x,y,width,height,の整数化＝小数点を四捨五入
+
+対象外:グループ名称が「icon」や「logo」を含む要素は整数化するが、その子要素は対象外
+
+
+　■非表示を削除
+削除されたものはプラグインUI上の「note」に表示される
+
+対象外:「SP_ガイド」「PC_ガイド」
+    
+
+　■複数フレーム逆転
+1 fv,sec01,cvなどのframeを複数選択して実行
+2 重なり順が逆転する
+※ただし、逆転後に「最上段・固定」側に強制移動するので「スクロール」へ移す必要があります
+
+対象外:page直下のframe1つ(SP_n稿 など)では実行不可。複数にするか、fv,sec01など逆転したいフレーム群を別フレームに入れれば実行可能
+（その場合別フレームは削除される&なぜか子要素が展開されるので、上のメニューバーから「オブジェクト」→「レイヤーの折りたたみ」で閉じてください）
+
+
+　■小文字に変換
+選択レイヤー名称を調整します
+全角→小文字の英数字に変換
+半/全角スペースの削除
+一桁の数字の場合ゼロを足し　01、02、にする
+日本語はスルー
+例:Sec １_〇〇
+→sec01_〇〇
+    </textarea>
+
+
+</div>
+</div>
+
+<script language=JavaScript type=text/javascript>
+ let check_gimick = () => {
+    const arr = ['true','true','true']
+  if (document.getElementById('pxCheck').checked) { 
+      arr[0]='true';}else{arr[0]='false'}
+  if (document.getElementById('pxRound').checked) { 
+      arr[1]='true';}else{arr[1]='false'}
+  if (document.getElementById('invisibleDelete').checked) { 
+    arr[2]='true';}else{arr[2]='false'}
+  if (!arr.includes('true')) {
+    document.getElementById("create").classList.replace('create','close');}
+  else{document.getElementById("create").classList.replace('close','create');
+  }
+  }
+// pxCheckのチェックボックスがfalseなら数字をグレーアウト
+document.getElementById('pxCheck').onclick = () => {
+  if (document.getElementById('pxCheck').checked) { 
+    document.getElementById("x_count").classList.replace('gray','neutral');
+  }else{
+    document.getElementById("x_count").classList.replace('neutral','gray');
+  }
+  check_gimick()
+}
+document.getElementById('pxRound').onclick = () => {  check_gimick()}
+document.getElementById('invisibleDelete').onclick = () => {  check_gimick()}
+
+document.getElementById('reverse').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'reverse'} }, '*');}
+document.getElementById('small_letter').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'small_letter'} }, '*');}
+document.getElementById('count').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'count'} }, '*');}
+
+
+document.getElementById('rename').onclick = () => {
+  let x_name = document.getElementById('rename').value;
+  parent.postMessage({ pluginMessage: { type: 'rename', x_name} }, '*');
+}
+
+// クリックしたらrunningを表示しコード実行
+document.getElementById('create').onclick = () => {
+  document.getElementById("textarea").textContent = ''
+  const arr = ['true','true','true']
+  if (document.getElementById('pxCheck').checked) { 
+      arr[0]='true';
+    }else{arr[0]='false'}
+  if (document.getElementById('pxRound').checked) { 
+      arr[1]='true';
+    }else{arr[1]='false'}
+  if (document.getElementById('invisibleDelete').checked) { 
+    arr[2]='true';
+  }else{arr[2]='false'}
+  
+  if (arr.includes('true')) {
+    let px_Check = arr[0];
+    let px_Round = arr[1];
+    let invisible_Delete = arr[2];
+    let x_textbox = document.getElementById('x_count');
+    let y_textbox = document.getElementById('x_count');
+    let x_count = parseInt(x_textbox.value, 10);
+    let y_count = parseInt(y_textbox.value, 10);
+    document.getElementById("main_text").textContent = "running..."  
+    document.getElementById("main_text").classList.replace('done','h')
+    parent.postMessage({ pluginMessage: { type: 'create-shapes', x_count, y_count,px_Check,px_Round,invisible_Delete} }, '*');
+  }else {
+    document.getElementById("main_text").textContent = "please check"  
+  }
+}
+
+// closeクリックしたらコード実行→ウィンドウ閉じる
+// document.getElementById('close').onclick = () => {
+//   parent.postMessage({ pluginMessage: { type: 'close' } }, '*')
+// } 
+
+// コード実行後のメッセージ受け取り、done表示
+onmessage = (event) => {
+  // type result　は上段テキストを変更
+  if (event.data.pluginMessage.type == 'result') {
+    let message = event.data.pluginMessage.body
+    document.getElementById("main_text").textContent = message
+    if (message == 'not selected') {
+    }else{
+    document.getElementById("main_text").classList.replace('h','done');
+    }
+  }
+  // type note　は下段テキストを変更
+  if (event.data.pluginMessage.type == 'note') {
+    let message = event.data.pluginMessage.body
+    let msg_kaigyou =[]
+    if (message[1].length > 1) {
+      msg_kaigyou = message[0] +'\n'+ message[1].join('\n')
+    }else{
+      msg_kaigyou = message[0] +'\n'+ message[1]
+    }
+    document.getElementById("textarea").textContent = msg_kaigyou
+  }
+}
+
+
+// // <input id="text" type="text"> の値を設定する
+// let input = document.getElementById('text');
+// input.value = 'my input';
+// // <textarea id="textarea"> の値を設定する
+//   let textarea = document.getElementById('textarea');
+// textarea.value = 'こんにちは\n今日は\n良い天気ですね';
+    </script>

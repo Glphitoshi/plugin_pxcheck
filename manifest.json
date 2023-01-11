@@ -1,0 +1,11 @@
+{
+  "name": "px_check",
+  "id": "1176877516740164467",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": [
+    "figma",
+    "figjam"
+  ],
+  "ui": "ui.html"
+}
